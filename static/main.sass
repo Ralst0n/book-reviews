@@ -1,0 +1,56 @@
+$cover-color: rgb(155, 141, 232)
+
+%message
+  background-color: skyblue
+  border: 1px solid black
+
+.header-cover
+  height: 32px
+  width: 100%
+  background-color: $cover-color
+
+
+.review-card
+  @extend %message
+  font-size: 14px
+
+body
+  background-color: gold
+
+#description, #reviews
+  width: 60%
+  margin: 30px auto
+
+  p
+    text-align: left
+
+#book-review
+  select
+    width: 5%
+    display: inline
+
+  textarea
+    width: 60%
+    margin: auto
+
+#scoreboards
+  width: 60%
+  display: flex
+  margin: 30px auto
+  border: 1px solid black
+
+#local-reviews
+  border-right: 1px solid black
+
+.reviews-box
+  width: 50%
+
+#nav
+  display: flex
+  justify-content: space-between
+  width: 100%
+  min-height: 60px
+
+  div
+    min-height: 48px
+    font: 48px
