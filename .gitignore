@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+#sass stuff
+
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
