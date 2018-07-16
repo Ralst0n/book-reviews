@@ -17,10 +17,11 @@ application.py provides routes to:
   register for the app
   log in and out of the app
   access the book api to get basic info about a book by isbn
+  use raw sql queries throughout via sqlalchemy db.execute
 
 book.html includes:
   ratings and review count from good reads api
   placeholder ratings from this site
   thumbnails and descriptions from google books api
   a form to add a review to the book
-  a reviews section showing the reviews left by other site users 
+  a reviews section showing the reviews left by other site users
