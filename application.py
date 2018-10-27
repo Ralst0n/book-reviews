@@ -74,8 +74,12 @@ def login(message=""):
                 session["username"] = username
                 return redirect(url_for('index'))
         message = "Invalid credentials"
-    return render_template("login.html", destination="login", link=url_for("signup"), message=message)
+    return render_template("login.html", destination="login", link=url_for("signup"), guest=url_for("guest_login"), message=message)
 
+@app.route("/guest", methods=['GET','POST'])
+def guest_login():
+    session["username"] = "Guest"
+    return redirect(url_for('index'))
 
 @app.route("/logout", methods=['GET'])
 def logout():
@@ -154,10 +158,10 @@ def result(isbn):
     for item in range(5):
         if(google['items'][item]['volumeInfo']['title'] == book.title and book.author in google['items'][item]['volumeInfo']['authors']):
             try:
-                description = google['items'][0]['volumeInfo']['description']
+                description = google['items'][item]['volumeInfo']['description']
             except:
                 description = f"No description provided for {book.title}"
-            image = google['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+            image = google['items'][item]['volumeInfo']['imageLinks']['thumbnail']
             break
 
     # show reviewed page if user alerady reaviewed the book
