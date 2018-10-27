@@ -1,50 +1,76 @@
 .review-card {
   background-color: skyblue;
-  border: 1px solid black; }
+  border: 1px solid black;
+}
 
 .header-cover {
   height: 32px;
   width: 100%;
-  background-color: #9b8de8; }
+  background-color: rgba(155, 141, 232, 0.6);
+}
 
 .review-card {
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 body {
-  background-color: gold; }
+  background-color: rgba(255, 215, 0, 0.2);
+}
 
 #description, #reviews {
   width: 60%;
-  margin: 30px auto; }
-  #description p, #reviews p {
-    text-align: left; }
+  margin: 30px auto;
+}
+#description p, #reviews p {
+  text-align: left;
+}
 
 #book-review select {
   width: 5%;
-  display: inline; }
+  display: inline;
+}
 #book-review textarea {
   width: 60%;
-  margin: auto; }
+  margin: auto;
+}
 
 #scoreboards {
   width: 60%;
   display: flex;
   margin: 30px auto;
-  border: 1px solid black; }
+  border: 1px solid black;
+}
 
 #local-reviews {
-  border-right: 1px solid black; }
+  border-right: 1px solid black;
+}
 
 .reviews-box {
-  width: 50%; }
+  width: 50%;
+}
 
 #nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  min-height: 60px; }
-  #nav div {
-    min-height: 48px;
-    font: 48px; }
+  min-height: 60px;
+}
+#nav div {
+  min-height: 48px;
+  font: 48px;
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
 
 /*# sourceMappingURL=main.css.map */
