@@ -103,7 +103,6 @@ def search(results=[], num_results=None):
 @app.route("/search/<string:isbn>", methods=["GET", "POST"])
 def result(isbn):
     # Check logged in
-    # Check logged in
     if not session.get("username"):
         return redirect(url_for('login'))
 
@@ -119,8 +118,10 @@ def result(isbn):
             db.execute("INSERT INTO reviews (book_isbn, rating, comment, user_id) VALUES (:isbn, :rating, :comment, :user_id)",
                     {"isbn": isbn, "rating":rating, "comment":comment, "user_id":user_id})
             db.commit()
+
     if db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn": isbn} ).rowcount == 0:
         return render_template("search.html")
+
     book = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn": isbn} ).fetchone()
     # Get all the reviews for the book. Join the users table as well so we can stick names on each review.
     reviews = db.execute("SELECT * FROM reviews LEFT JOIN users ON users.id = reviews.user_id WHERE book_isbn = :isbn AND comment IS NOT NULL ", {"isbn": isbn}).fetchall()
@@ -133,7 +134,7 @@ def result(isbn):
 
 
     # Get summary from google books
-    res = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=isbn={isbn}&key={config('GOOGLE_APIKEY')}")
+    res = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=title={book.title}&key={config('GOOGLE_APIKEY')}")
     google = res.json()
     description = google['items'][0]['volumeInfo']['description']
     image = google['items'][0]['volumeInfo']['imageLinks']['thumbnail']
