@@ -134,7 +134,7 @@ def result(isbn):
 
 
     # Get summary from google books
-    res = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=title={book.title}&key={config('GOOGLE_APIKEY')}")
+    res = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=title={book.title}&author={book.author}key={config('GOOGLE_APIKEY')}")
     google = res.json()
     description = google['items'][0]['volumeInfo']['description']
     image = google['items'][0]['volumeInfo']['imageLinks']['thumbnail']
