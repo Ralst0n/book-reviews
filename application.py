@@ -136,8 +136,19 @@ def result(isbn):
     # Get summary from google books
     res = requests.get(f"https://www.googleapis.com/books/v1/volumes?q=title={book.title}&author={book.author}key={config('GOOGLE_APIKEY')}")
     google = res.json()
-    description = google['items'][0]['volumeInfo']['description']
-    image = google['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+    
+    description = "No description found"
+    image = ""
+    # check at most 5 items to find the correct book
+    for item in range(5):
+        if(google['items'][item]['title'] == book.title and book.author in google['items'][item]['authors']):
+            try:
+                description = google['items'][0]['volumeInfo']['description']
+            except:
+                description = f"No description provided for {book.title}"
+            image = google['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+            break
+
     # show reviewed page if user alerady reaviewed the book
     if db.execute("SELECT * FROM reviews WHERE book_isbn = :isbn AND user_id IN (SELECT id FROM users WHERE username = :username)", {"isbn":isbn, "username": session['username']}).rowcount == 0:
         reviewed = False
